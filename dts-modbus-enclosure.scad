@@ -46,7 +46,7 @@ render()
                   xcopies(16) position(TOP) prismoid(size1=[width1, length2], size2=[width2, length2], h=depth, anchor=TOP)
                         attach(BOTTOM, BOTTOM) prismoid(size1=[width1, length2], size2=[width1, 0], yang=[90, 25]);
                 }
-      right(connector_spacing)
+      left(connector_spacing)
         attach(BACK, TOP, inside=true) tag("remove")
             grid_copies(spacing=connector_spacing, n=[2, 1]) connector_cutout(thickness=connector_thickness)
                 tag("") down(wall_thickness) {
@@ -60,7 +60,7 @@ render()
                     xcopies(16) position(TOP) prismoid(size1=[width1, length2], size2=[width2, length2], h=depth, anchor=TOP)
                           attach(BOTTOM, BOTTOM) prismoid(size1=[width1, length2], size2=[width1, 0], yang=[90, 25]);
                   }
-      left(connector_spacing)
+      right(connector_spacing)
         fwd(wall_thickness) attach(BACK, BOTTOM) tag("remove") s_1612a_cutout(thickness=connector_thickness - wall_thickness)
                 tag("") attach(BOTTOM, BOTTOM) {
                     size = s_1612a_cutout_size(thickness=4);
@@ -73,8 +73,5 @@ render()
                     pcb_mounting_post() cyl(h=3, d=6) position(TOP) cyl(h=5, d=2.8, anchor=BOTTOM);
           tag("remove") up(1.5 + 3) cuboid([20, wall_thickness, 17], rounding=2, edges=["Y"], anchor=BOTTOM + BACK);
         }
-        // position(BOTTOM + LEFT) cuboid([connector_thickness - wall_thickness, support_wall_width, support_wall_height], rounding=2, edges=[TOP + RIGHT], anchor=BOTTOM + LEFT);
-        // position(BOTTOM + RIGHT) back(support_wall_width / 4) cuboid([connector_thickness - wall_thickness, support_wall_width / 2, support_wall_height], rounding=2, edges=[TOP + LEFT], anchor=BOTTOM + RIGHT);
-        // position(BOTTOM + BACK) cuboid([support_wall_width, connector_thickness - wall_thickness, support_wall_height], rounding=2, edges=[TOP + FRONT], anchor=BOTTOM + BACK);
       }
     }
