@@ -192,7 +192,7 @@ module stacking_lip(units, anchor = BOTTOM, spin = 0, orient = UP, wall_thicknes
   height = [0.7, 1.8, 1.9];
   size = [GF_GRID_SIZE * units.x - GF_TOLERANCE, GF_GRID_SIZE * units.y - GF_TOLERANCE];
 
-  top_thickness = min(wall_thickness, GF_WALL_THICKNESS);
+  top_thickness = min(wall_thickness, 0.75);
   top_height = height[2] - top_thickness;
 
   bottom_nominal_thickness = height[0] + height[2];
@@ -223,7 +223,7 @@ module stacking_lip(units, anchor = BOTTOM, spin = 0, orient = UP, wall_thicknes
   attachable(anchor, spin, orient, size=[GF_GRID_SIZE * units.x - GF_TOLERANCE, GF_GRID_SIZE * units.y - GF_TOLERANCE, lip_height]) {
     up(lip_height / 2)
       // top slope
-      rect_tube(size1=size, size2=size, isize1=inner_mid, isize2=inner_top, h=top_height, rounding=GF_OUTER_RADIUS, irounding1=GF_MIDDLE_RADIUS, irounding2=GF_OUTER_RADIUS-top_thickness, anchor=TOP)
+      rect_tube(size1=size, size2=size, isize1=inner_mid, isize2=inner_top, h=top_height, rounding=GF_OUTER_RADIUS, irounding1=GF_MIDDLE_RADIUS, irounding2=GF_OUTER_RADIUS - top_thickness, anchor=TOP)
         position(BOTTOM)
           // straight middle wall
           rect_tube(size=size, isize=inner_mid, h=height[1], rounding=GF_OUTER_RADIUS, irounding=GF_MIDDLE_RADIUS, anchor=TOP)
