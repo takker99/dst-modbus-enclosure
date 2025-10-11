@@ -86,7 +86,7 @@ module gridfinity_block(size, stacking_lip = false, anchor = BOTTOM, spin = 0, o
   assert(wall_thickness >= GF_WALL_MIN_THICKNESS, str("wall_thickness must be at least ", GF_WALL_MIN_THICKNESS));
 
   foot_height = 4.75;
-  floor_thickness = 0.95;
+  floor_thickness = wall_thickness;
 
   lip_height = stacking_lip ? stacking_lip_height(slice(size, 0, 1), wall_thickness) : 0;
   lip_bottom_height = stacking_lip_bottom_extension_height(slice(size, 0, 1), wall_thickness);

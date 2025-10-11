@@ -2,7 +2,7 @@
 # Build STL files from SCAD sources
 
 # Variables
-OPENSCAD = openscad-nightly
+OPENSCAD = openscad
 OPENSCAD_FLAGS = --backend=manifold --enable=lazy-union --enable=roof
 RENDER_DIR = renders
 SOURCE_FILE = dts-modbus-enclosure.scad

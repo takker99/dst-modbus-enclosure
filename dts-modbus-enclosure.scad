@@ -24,12 +24,17 @@ render()
       right(connector_spacing)
         attach(BACK, TOP, inside=true) tag("remove")
             grid_copies(spacing=connector_spacing, n=[2, 1]) connector_cutout(thickness=connector_thickness);
+      left(connector_spacing)
+        fwd(wall_thickness) attach(BACK, BOTTOM) tag("remove") s_1612a_cutout(thickness=connector_thickness - wall_thickness);
       attach_part("inside") {
         position(BOTTOM + FRONT) {
           back(2) color("red") hide_this() cuboid([100, 100, 0], rounding=2, edges=["Z"], anchor=BOTTOM + FRONT)
                   position(TOP)
-                    pcb_mounting_post(5);
+                    pcb_mounting_post() cyl(h=3, d=6) position(TOP) cyl(h=5, d=2.8, anchor=BOTTOM);
+          tag("remove") up(1.5 + 3) cuboid([20, wall_thickness, 17], rounding=2, edges=["Y"], anchor=BOTTOM + BACK);
         }
-        position(BOTTOM + LEFT) cuboid([connector_thickness - wall_thickness, 42 * 3 - 2, 28], anchor=LEFT + BOTTOM);
+        position(BOTTOM + LEFT) cuboid([connector_thickness - wall_thickness, 42 * 3 - 4, 27.5], anchor=LEFT + BOTTOM);
+        position(BOTTOM + RIGHT) back((42 * 3 - 4) / 4) cuboid([connector_thickness - wall_thickness, (42 * 3 - 4) / 2, 27.5], anchor=RIGHT + BOTTOM);
+        position(BOTTOM + BACK) cuboid([42 * 3 - 4, connector_thickness - wall_thickness, 27.5], anchor=BACK + BOTTOM);
       }
     }
