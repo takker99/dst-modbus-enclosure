@@ -1,0 +1,25 @@
+{
+  "id": "openscad-snapshot",
+  "version": "1.0.0",
+  "name": "OpenSCAD Development Snapshot",
+  "description": "Installs a specific version of OpenSCAD development snapshot",
+  "options": {
+    "version": {
+      "type": "string",
+      "default": "2025.10.05",
+      "description": "OpenSCAD snapshot version to install (format: YYYY.MM.DD)"
+    },
+    "installMethod": {
+      "type": "string",
+      "enum": [
+        "appimage",
+        "apt-nightly"
+      ],
+      "default": "appimage",
+      "description": "Installation method: 'appimage' for specific version, 'apt-nightly' for latest nightly"
+    }
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ]
+}
