@@ -60,12 +60,20 @@ render()
             left(connector_spacing)
               zrot(180) connector_with_support(n=[2, 1]);
         }
-        right(connector_spacing) fwd(wall_thickness) attach(BACK, BOTTOM)
-              s_1612a_cutout(thickness=connector_thickness - wall_thickness)
-                tag("") attach(BOTTOM, BOTTOM) {
-                    size = s_1612a_cutout_size(thickness=4);
-                    prismoid(size2=[size.x, size.y], xang=45, yang=45, h=3 - wall_thickness, rounding=2);
-                  }
+        right(connector_spacing) attach(BACK, TOP, inside=true)
+            s_1612a_cutout(thickness=4) {
+              size = s_1612a_cutout_size(thickness=4);
+              attach(TOP, BOTTOM, inside=true) {
+                tag("") prismoid(size2=[size.x, size.y] + [1, 1], xang=45, yang=45, h=3, rounding=2);
+                tag("") cuboid([size.x, size.y, 8 + 1.7] + [1, 1, 0], rounding=2, edges=["Z"])
+                    xcopies(1 + 10, n=3)
+                      attach(FRONT, BOTTOM)
+                        cuboid([1, 8 + 1.7, 9.5]) up(2) {
+                            attach(BOTTOM + LEFT, FRONT + RIGHT) fillet(l=8 + 1.7, r=2);
+                            attach(BOTTOM + RIGHT, FRONT + RIGHT) fillet(l=8 + 1.7, r=2);
+                          }
+              }
+            }
       }
 
       attach_part("inside") {
