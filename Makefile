@@ -5,19 +5,19 @@
 OPENSCAD = openscad
 OPENSCAD_FLAGS = --backend=manifold --enable=lazy-union --enable=roof
 RENDER_DIR = renders
-SOURCE_FILE = dts-modbus-enclosure.scad
-TARGET_FILE = $(RENDER_DIR)/dts-modbus-enclosure.stl
+SOURCE_FILES = dts-modbus-enclosure.scad modbus-board.scad
+TARGET_FILES = $(patsubst %.scad,$(RENDER_DIR)/%.stl,$(SOURCE_FILES))
 
 # Default target
-all: $(TARGET_FILE)
+all: $(TARGET_FILES)
 
 # Create renders directory if it doesn't exist
 $(RENDER_DIR):
 	mkdir -p $(RENDER_DIR)
 
-# Build STL file from SCAD source
-$(TARGET_FILE): $(SOURCE_FILE) | $(RENDER_DIR)
-	$(OPENSCAD) $(OPENSCAD_FLAGS) -o $(TARGET_FILE) $(SOURCE_FILE)
+# Build STL files from SCAD sources
+$(RENDER_DIR)/%.stl: %.scad | $(RENDER_DIR)
+	$(OPENSCAD) $(OPENSCAD_FLAGS) -o $@ $<
 
 # Clean generated files
 clean:
@@ -29,10 +29,13 @@ rebuild: clean all
 # Help target
 help:
 	@echo "Available targets:"
-	@echo "  all     - Build STL file (default)"
+	@echo "  all     - Build STL files (default)"
 	@echo "  clean   - Remove generated files"
 	@echo "  rebuild - Clean and build"
 	@echo "  help    - Show this help message"
+	@echo ""
+	@echo "Current source files: $(SOURCE_FILES)"
+	@echo "Target files: $(TARGET_FILES)"
 
 # Declare phony targets
 .PHONY: all clean rebuild help
