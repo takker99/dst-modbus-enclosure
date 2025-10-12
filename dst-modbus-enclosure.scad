@@ -68,9 +68,7 @@ render()
                   }
       attach_part("inside") {
         position(BOTTOM + FRONT) {
-          back(2) color("red") hide_this() cuboid([100, 100, 0], anchor=BOTTOM + FRONT)
-                  position(TOP)
-                    pcb_mounting_post() cyl(h=3, d=6) position(TOP) cyl(h=5, d=2.8, anchor=BOTTOM);
+          back(2) color("red") pcb_mounting_post(anchor=BOTTOM + FRONT) cyl(h=3, d=6) position(TOP) cyl(h=5, d=2.8, anchor=BOTTOM);
           tag("remove") up(1.5 + 3) cuboid([20, wall_thickness, 17], rounding=2, edges=["Y"], anchor=BOTTOM + BACK);
         }
       }
