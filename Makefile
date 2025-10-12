@@ -5,7 +5,7 @@
 OPENSCAD = openscad
 OPENSCAD_FLAGS = --backend=manifold --enable=lazy-union --enable=roof
 RENDER_DIR = renders
-SOURCE_FILES = dts-modbus-enclosure.scad modbus-board.scad
+SOURCE_FILES = dst-modbus-enclosure.scad modbus-board.scad
 TARGET_FILES = $(patsubst %.scad,$(RENDER_DIR)/%.stl,$(SOURCE_FILES))
 
 # Default target
